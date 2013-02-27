@@ -1,4 +1,5 @@
 #import "RecentPhotosViewController.h"
+#import "FlickrFetcher.h"
 
 
 @interface RecentPhotosViewController ()
@@ -37,10 +38,10 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   UITableViewCell *cell =
-  [self.tableView dequeueReusableCellWithIdentifier:@"Geographical Place"];
+  [self.tableView dequeueReusableCellWithIdentifier:@"Picture Summary"];
   if (!cell)
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                  reuseIdentifier:@"Geographical Place"];
+                                  reuseIdentifier:@"Picture Summary"];
   cell.textLabel.text = @"";
   cell.detailTextLabel.text = @"";
   return cell;

@@ -2,6 +2,7 @@
 #import "TopPlacesViewController.h"
 #import "FlickrFetcher.h"
 
+
 @interface TopPlacesViewController ()
 
 @property (nonatomic, strong) NSArray *topPlaces;
