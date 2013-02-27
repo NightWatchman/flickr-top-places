@@ -1,0 +1,13 @@
+.DS_Store
+*.sqp
+*.lock
+profile
+
+*~.nib
+DerivedData/
+build/
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.moved-aside
+xcuserdata
