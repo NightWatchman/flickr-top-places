@@ -1,7 +1,6 @@
-#import <UIKit/UIKit.h>
+#import "PhotosTableViewController.h"
 
 
-@interface RecentPhotosViewController : UITableViewController
-<UITableViewDataSource, UITableViewDelegate>
+@interface RecentPhotosViewController : PhotosTableViewController
 
 @end

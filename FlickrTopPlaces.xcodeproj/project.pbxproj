@@ -25,6 +25,7 @@
 		0781F96516DD6BD0005D16B8 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0781F96416DD6BD0005D16B8 /* second@2x.png */; };
 		0781F96E16DD7428005D16B8 /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 0781F96D16DD7428005D16B8 /* FlickrFetcher.m */; };
 		0781F97416DE80C7005D16B8 /* RecentPictures.m in Sources */ = {isa = PBXBuildFile; fileRef = 0781F97316DE80C7005D16B8 /* RecentPictures.m */; };
+		0781F97716DEA423005D16B8 /* PhotosTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0781F97616DEA423005D16B8 /* PhotosTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,8 @@
 		0781F96D16DD7428005D16B8 /* FlickrFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrFetcher.m; sourceTree = "<group>"; };
 		0781F97216DE80C7005D16B8 /* RecentPictures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentPictures.h; sourceTree = "<group>"; };
 		0781F97316DE80C7005D16B8 /* RecentPictures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentPictures.m; sourceTree = "<group>"; };
+		0781F97516DEA423005D16B8 /* PhotosTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosTableViewController.h; sourceTree = "<group>"; };
+		0781F97616DEA423005D16B8 /* PhotosTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +121,8 @@
 				0781F94416DD6BD0005D16B8 /* Supporting Files */,
 				0781F97216DE80C7005D16B8 /* RecentPictures.h */,
 				0781F97316DE80C7005D16B8 /* RecentPictures.m */,
+				0781F97516DEA423005D16B8 /* PhotosTableViewController.h */,
+				0781F97616DEA423005D16B8 /* PhotosTableViewController.m */,
 			);
 			path = FlickrTopPlaces;
 			sourceTree = "<group>";
@@ -212,6 +217,7 @@
 				0781F96116DD6BD0005D16B8 /* RecentPhotosViewController.m in Sources */,
 				0781F96E16DD7428005D16B8 /* FlickrFetcher.m in Sources */,
 				0781F97416DE80C7005D16B8 /* RecentPictures.m in Sources */,
+				0781F97716DEA423005D16B8 /* PhotosTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
