@@ -1,5 +1,5 @@
 #import "PhotosTableViewController.h"
-
+#import "FlickrFetcher.h"
 
 
 @interface PhotosTableViewController ()
@@ -30,13 +30,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+  NSDictionary *photo = [self.photos objectAtIndex:indexPath.row];
   UITableViewCell *cell =
-  [self.tableView dequeueReusableCellWithIdentifier:@"Picture Summary"];
+  [self.tableView dequeueReusableCellWithIdentifier:@"Photo Summary"];
   if (!cell)
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                  reuseIdentifier:@"Picture Summary"];
-  cell.textLabel.text = @"";
-  cell.detailTextLabel.text = @"";
+                                  reuseIdentifier:@"Photo Summary"];
+  NSString *title = [photo objectForKey:FLICKR_PHOTO_TITLE];
+  if (!title)
+    title = [photo objectForKey:FLICKR_PHOTO_DESCRIPTION];
+  if (!title)
+    title = @"Unknown";
+  cell.textLabel.text = title;
+  cell.detailTextLabel.text = [photo objectForKey:FLICKR_PHOTO_DESCRIPTION];
   return cell;
 }
 

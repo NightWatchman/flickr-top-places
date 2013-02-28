@@ -22,6 +22,7 @@
   NSString *city = [[placeName componentsSeparatedByString:@","]
                     objectAtIndex:0];
   self.title = [city stringByAppendingString:@" Pictures"];
+//  [self.tableView reloadData];
 }
 
 @end
