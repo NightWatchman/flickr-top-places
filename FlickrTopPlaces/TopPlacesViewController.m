@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 #import "TopPlacesViewController.h"
 #import "FlickrFetcher.h"
+#import "PlacePhotosViewController.h"
 
 
 @interface TopPlacesViewController ()
@@ -17,15 +18,18 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  self.clearsSelectionOnViewWillAppear = NO;
   self.tableView.dataSource = self;
   self.tableView.delegate = self;
   self.topPlaces = [FlickrFetcher topPlaces];
 }
 
-- (void)didReceiveMemoryWarning
-{
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  if ([segue.identifier isEqualToString:@"View Photo"]) {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    PlacePhotosViewController *dest = segue.destinationViewController;
+    dest.place = [self.topPlaces objectAtIndex:indexPath.row];
+  }
 }
 
 #pragma UITableViewDataSource
