@@ -75,11 +75,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Photo Summary" textLabel="tld-sO-Gfg" detailTextLabel="oo8-Ge-NBF" style="IBUITableViewCellStyleSubtitle" id="gxZ-4Z-41y">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Photo Summary" textLabel="tld-sO-Gfg" detailTextLabel="oo8-Ge-NBF" imageView="Wrc-k0-mCb" style="IBUITableViewCellStyleSubtitle" id="gxZ-4Z-41y">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tld-sO-Gfg">
@@ -92,9 +92,16 @@
                                             <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="first" id="Wrc-k0-mCb">
+                                            <rect key="frame" x="10" y="13" width="16" height="16"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <segue destination="6FM-DB-JG4" kind="push" id="QrB-FV-gor"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -106,7 +113,46 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IwP-Pi-wDp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1637" y="-186"/>
+            <point key="canvasLocation" x="1642" y="-186"/>
+        </scene>
+        <!--Photo View Controller - Photo-->
+        <scene sceneID="O90-do-kHQ">
+            <objects>
+                <viewController id="6FM-DB-JG4" customClass="PhotoViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YVY-RH-tbt">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hUH-uJ-7ut">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hnt-fL-0lT"/>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="hnt-fL-0lT" firstAttribute="top" secondItem="hUH-uJ-7ut" secondAttribute="top" constant="20" symbolic="YES" type="default" id="3tn-wy-IXU"/>
+                                    <constraint firstItem="hnt-fL-0lT" firstAttribute="centerX" secondItem="hUH-uJ-7ut" secondAttribute="centerX" type="default" id="DEm-xt-laK"/>
+                                    <constraint firstItem="hnt-fL-0lT" firstAttribute="leading" secondItem="hUH-uJ-7ut" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="H7U-I0-TU6"/>
+                                    <constraint firstAttribute="trailing" secondItem="hnt-fL-0lT" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Isw-9V-qnP"/>
+                                    <constraint firstAttribute="bottom" secondItem="hnt-fL-0lT" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="NRN-oE-XD2"/>
+                                    <constraint firstItem="hnt-fL-0lT" firstAttribute="centerY" secondItem="hUH-uJ-7ut" secondAttribute="centerY" type="default" id="brR-Ed-hGW"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hUH-uJ-7ut" firstAttribute="top" secondItem="YVY-RH-tbt" secondAttribute="top" constant="-20" id="VmO-GB-jy0"/>
+                            <constraint firstItem="hUH-uJ-7ut" firstAttribute="centerY" secondItem="YVY-RH-tbt" secondAttribute="centerY" type="default" id="Y1F-nc-h1k"/>
+                            <constraint firstItem="hUH-uJ-7ut" firstAttribute="leading" secondItem="YVY-RH-tbt" secondAttribute="leading" constant="-20" id="izW-AK-IQI"/>
+                            <constraint firstItem="hUH-uJ-7ut" firstAttribute="centerX" secondItem="YVY-RH-tbt" secondAttribute="centerX" type="default" id="sQ8-4j-is3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Photo" id="WGe-1Y-WF6"/>
+                    <connections>
+                        <outlet property="imageView" destination="hnt-fL-0lT" id="87g-ft-JVr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WL6-ae-JG8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2101" y="-186"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="15">
@@ -175,6 +221,29 @@
         <image name="first" width="16" height="16"/>
         <image name="second.png" width="30" height="30"/>
     </resources>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PhotoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="PhotosTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotosTableViewController.h"/>
+        </class>
+        <class className="PlacePhotosViewController" superclassName="PhotosTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlacePhotosViewController.h"/>
+        </class>
+        <class className="RecentPhotosViewController" superclassName="PhotosTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecentPhotosViewController.h"/>
+        </class>
+        <class className="TopPlacesViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopPlacesViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

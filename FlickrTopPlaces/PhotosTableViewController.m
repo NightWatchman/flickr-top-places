@@ -36,14 +36,25 @@
   if (!cell)
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                   reuseIdentifier:@"Photo Summary"];
+  cell.textLabel.text = [self displayNameForPhoto:photo];
+  cell.detailTextLabel.text = [photo objectForKey:FLICKR_PHOTO_DESCRIPTION];
+  cell.imageView.image = [self thumbnailForPhoto:photo];
+  return cell;
+}
+
+- (NSString *)displayNameForPhoto:(NSDictionary *)photo {
   NSString *title = [photo objectForKey:FLICKR_PHOTO_TITLE];
   if (!title)
     title = [photo objectForKey:FLICKR_PHOTO_DESCRIPTION];
   if (!title)
     title = @"Unknown";
-  cell.textLabel.text = title;
-  cell.detailTextLabel.text = [photo objectForKey:FLICKR_PHOTO_DESCRIPTION];
-  return cell;
+  return title;
+}
+
+- (UIImage *)thumbnailForPhoto:(NSDictionary *)photo {
+  NSURL *url = [FlickrFetcher urlForPhoto:photo format:FlickrPhotoFormatSquare];
+  NSData *bin = [NSData dataWithContentsOfURL:url];
+  return [UIImage imageWithData:bin];
 }
 
 @end
