@@ -2,6 +2,7 @@
 
 
 #define NSUserDefaultsRecentPictures @"RECENT_PICTURES"
+#define NSUserDefaultsRecentPicturesMaxLength 20
 
 
 @implementation RecentPictures
@@ -19,6 +20,10 @@
                                arrayForKey:NSUserDefaultsRecentPictures]
                                mutableCopy];
   [savedPics insertObject:picture atIndex:0];
+  if (savedPics.count > NSUserDefaultsRecentPicturesMaxLength) {
+    savedPics = [[savedPics subarrayWithRange:NSMakeRange
+                 (0, NSUserDefaultsRecentPicturesMaxLength)] mutableCopy];
+  }
   [prefs setObject:picture forKey:NSUserDefaultsRecentPictures];
   [prefs synchronize];
 }

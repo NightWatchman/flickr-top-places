@@ -1,5 +1,6 @@
 #import "PhotoViewController.h"
 #import "FlickrFetcher.h"
+#import "RecentPictures.h"
 
 
 @interface PhotoViewController ()
@@ -17,6 +18,7 @@
   [super viewDidLoad];
   self.title = [self.photo objectForKey:FLICKR_PHOTO_TITLE];
   self.imageView.image = [self imageForPhoto];
+  [RecentPictures addRecentPicture:self.photo];
 }
 
 - (UIImage *)imageForPhoto {
