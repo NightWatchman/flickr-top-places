@@ -18,9 +18,7 @@
 @synthesize photos = _photos;
 - (NSArray *)photos
 {
-  if (!_photos)
-    _photos = [RecentPictures recentPictures];
-  return _photos;
+  return [RecentPictures recentPictures];
 }
 
 - (void)viewDidLoad

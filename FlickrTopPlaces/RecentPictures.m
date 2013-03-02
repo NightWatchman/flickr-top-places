@@ -19,12 +19,14 @@
   NSMutableArray *savedPics = [[prefs
                                arrayForKey:NSUserDefaultsRecentPictures]
                                mutableCopy];
+  if (!savedPics)
+    savedPics = [[NSMutableArray alloc] initWithCapacity:1];
   [savedPics insertObject:picture atIndex:0];
   if (savedPics.count > NSUserDefaultsRecentPicturesMaxLength) {
     savedPics = [[savedPics subarrayWithRange:NSMakeRange
                  (0, NSUserDefaultsRecentPicturesMaxLength)] mutableCopy];
   }
-  [prefs setObject:picture forKey:NSUserDefaultsRecentPictures];
+  [prefs setObject:savedPics forKey:NSUserDefaultsRecentPictures];
   [prefs synchronize];
 }
 

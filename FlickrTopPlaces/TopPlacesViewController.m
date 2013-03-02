@@ -2,6 +2,7 @@
 #import "TopPlacesViewController.h"
 #import "FlickrFetcher.h"
 #import "PlacePhotosViewController.h"
+#import "FlickrPlaceUtil.h"
 
 
 @interface TopPlacesViewController ()
@@ -24,11 +25,14 @@
   self.topPlaces = [FlickrFetcher topPlaces];
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if ([segue.identifier isEqualToString:@"View Photo"]) {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-    PlacePhotosViewController *dest = segue.destinationViewController;
-    dest.place = [self.topPlaces objectAtIndex:indexPath.row];
+    NSDictionary *place = [self.topPlaces objectAtIndex:indexPath.row];
+    NSDictionary *placeName = [FlickrPlaceUtil nameForPlace:place];
+    PhotosTableViewController *dest = segue.destinationViewController;
+    dest.title = [[placeName objectForKey:FLICKR_PLACE_NAME_CITY_KEY]
+                  stringByAppendingString:@" Pictures"];
   }
 }
 
@@ -44,16 +48,14 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   NSDictionary *place = [self.topPlaces objectAtIndex:indexPath.row];
-  NSString *placeName = [place valueForKey:FLICKR_PLACE_NAME];
-  NSString *city = [[placeName componentsSeparatedByString:@","] objectAtIndex:0];
-  NSString *placeDetails = [placeName substringFromIndex:city.length + 2];
+  NSDictionary *placeName = [FlickrPlaceUtil nameForPlace:place];
   UITableViewCell *cell =
   [self.tableView dequeueReusableCellWithIdentifier:@"Geographical Place"];
   if (!cell)
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                   reuseIdentifier:@"Geographical Place"];
-  cell.textLabel.text = city;
-  cell.detailTextLabel.text = placeDetails;
+  cell.textLabel.text = [placeName objectForKey:FLICKR_PLACE_NAME_CITY_KEY];
+  cell.detailTextLabel.text = [placeName objectForKey:FLICKR_PLACE_NAME_REGION_KEY];
   return cell;
 }
 

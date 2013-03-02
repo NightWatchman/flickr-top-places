@@ -5,14 +5,16 @@
 
 @interface PhotosTableViewController ()
 
-@property (nonatomic, strong) NSArray *photos;
-
 @end
 
 
 @implementation PhotosTableViewController
 
 @synthesize photos = _photos;
+- (void)setPhotos:(NSArray *)photos {
+  _photos = photos;
+  [self.tableView reloadData];
+}
 
 - (void)viewDidLoad {
   [super viewDidLoad];
