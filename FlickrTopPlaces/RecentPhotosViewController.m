@@ -13,15 +13,10 @@
 
 @implementation RecentPhotosViewController
 
-@synthesize photos = _photos;
-- (NSArray *)photos
+- (void)viewWillAppear:(BOOL)animated
 {
-  return [RecentPictures recentPictures];
-}
-
-- (void)viewDidLoad
-{
-  [super viewDidLoad];
+  [super viewWillAppear:animated];
+  self.photos = [RecentPictures recentPictures];
 }
 
 @end

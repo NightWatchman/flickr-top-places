@@ -14,7 +14,11 @@
 
 @implementation TopPlacesViewController
 
-@synthesize topPlaces;
+@synthesize topPlaces = _topPlaces;
+- (void)setTopPlaces:(NSArray *)topPlaces {
+  _topPlaces = topPlaces;
+  [self.tableView reloadData];
+}
 
 - (void)viewDidLoad
 {
@@ -22,7 +26,13 @@
   self.clearsSelectionOnViewWillAppear = NO;
   self.tableView.dataSource = self;
   self.tableView.delegate = self;
-  self.topPlaces = [FlickrFetcher topPlaces];
+  dispatch_queue_t downloadQueue = dispatch_queue_create("Image Downloader", NULL);
+  dispatch_async(downloadQueue, ^{
+    NSArray *places = [FlickrFetcher topPlaces];
+    dispatch_async(dispatch_get_main_queue(), ^{
+      self.topPlaces = places;
+    });
+  });
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
