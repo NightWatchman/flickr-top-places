@@ -29,10 +29,8 @@
   if ([segue.identifier isEqualToString:@"View Photo"]) {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
     NSDictionary *place = [self.topPlaces objectAtIndex:indexPath.row];
-    NSDictionary *placeName = [FlickrPlaceUtil nameForPlace:place];
-    PhotosTableViewController *dest = segue.destinationViewController;
-    dest.title = [[placeName objectForKey:FLICKR_PLACE_NAME_CITY_KEY]
-                  stringByAppendingString:@" Pictures"];
+    PlacePhotosViewController *dest = segue.destinationViewController;
+    dest.place = place;
   }
 }
 
@@ -55,7 +53,8 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                   reuseIdentifier:@"Geographical Place"];
   cell.textLabel.text = [placeName objectForKey:FLICKR_PLACE_NAME_CITY_KEY];
-  cell.detailTextLabel.text = [placeName objectForKey:FLICKR_PLACE_NAME_REGION_KEY];
+  cell.detailTextLabel.text = [placeName
+                               objectForKey:FLICKR_PLACE_NAME_REGION_KEY];
   return cell;
 }
 

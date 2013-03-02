@@ -119,12 +119,8 @@
 				0781F95516DD6BD0005D16B8 /* MainStoryboard.storyboard */,
 				0781F95816DD6BD0005D16B8 /* TopPlacesViewController.h */,
 				0781F95916DD6BD0005D16B8 /* TopPlacesViewController.m */,
-				0781F95B16DD6BD0005D16B8 /* first.png */,
-				0781F95D16DD6BD0005D16B8 /* first@2x.png */,
 				0781F95F16DD6BD0005D16B8 /* RecentPhotosViewController.h */,
 				0781F96016DD6BD0005D16B8 /* RecentPhotosViewController.m */,
-				0781F96216DD6BD0005D16B8 /* second.png */,
-				0781F96416DD6BD0005D16B8 /* second@2x.png */,
 				0781F94416DD6BD0005D16B8 /* Supporting Files */,
 				0781F97216DE80C7005D16B8 /* RecentPictures.h */,
 				0781F97316DE80C7005D16B8 /* RecentPictures.m */,
@@ -143,6 +139,10 @@
 		0781F94416DD6BD0005D16B8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0781F96216DD6BD0005D16B8 /* second.png */,
+				0781F96416DD6BD0005D16B8 /* second@2x.png */,
+				0781F95B16DD6BD0005D16B8 /* first.png */,
+				0781F95D16DD6BD0005D16B8 /* first@2x.png */,
 				0781F94C16DD6BD0005D16B8 /* AppDelegate.h */,
 				0781F94D16DD6BD0005D16B8 /* AppDelegate.m */,
 				0781F94516DD6BD0005D16B8 /* FlickrTopPlaces-Info.plist */,

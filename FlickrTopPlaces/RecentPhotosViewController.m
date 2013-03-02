@@ -8,8 +8,6 @@
 
 @interface RecentPhotosViewController ()
 
-@property (nonatomic, strong) NSArray *photos;
-
 @end
 
 
