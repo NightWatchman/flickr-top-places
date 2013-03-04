@@ -26,13 +26,14 @@
   self.clearsSelectionOnViewWillAppear = NO;
   self.tableView.dataSource = self;
   self.tableView.delegate = self;
-  dispatch_queue_t downloadQueue = dispatch_queue_create("Place Download", NULL);
+  dispatch_queue_t downloadQueue = dispatch_queue_create("Places Download", NULL);
   dispatch_async(downloadQueue, ^{
     NSArray *places = [FlickrFetcher topPlaces];
     dispatch_async(dispatch_get_main_queue(), ^{
       self.places = places;
     });
   });
+  dispatch_release(downloadQueue);
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
