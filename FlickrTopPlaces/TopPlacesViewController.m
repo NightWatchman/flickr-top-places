@@ -36,13 +36,11 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  if ([segue.identifier isEqualToString:@"View Photo"]) {
+  if ([segue.identifier isEqualToString:@"View Photos"]) {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
     NSDictionary *place = [self.places objectAtIndex:indexPath.row];
-    NSDictionary *placeName = [FlickrPlaceUtil nameForPlace:place];
-    PhotosTableViewController *dest = segue.destinationViewController;
-    dest.title = [[placeName objectForKey:FLICKR_PLACE_NAME_CITY_KEY]
-                  stringByAppendingString:@" Pictures"];
+    PlacePhotosViewController *dest = segue.destinationViewController;
+    dest.place = place;
   }
 }
 

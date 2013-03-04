@@ -50,7 +50,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="ehy-tn-psx" kind="push" identifier="View Photo" id="oPD-Rz-EUH"/>
+                                    <segue destination="ehy-tn-psx" kind="push" identifier="View Photos" id="oPD-Rz-EUH"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -239,6 +239,29 @@
         <image name="first" width="16" height="16"/>
         <image name="second.png" width="30" height="30"/>
     </resources>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PhotoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="PhotosTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotosTableViewController.h"/>
+        </class>
+        <class className="PlacePhotosViewController" superclassName="PhotosTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlacePhotosViewController.h"/>
+        </class>
+        <class className="RecentPhotosViewController" superclassName="PhotosTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecentPhotosViewController.h"/>
+        </class>
+        <class className="TopPlacesViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopPlacesViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
