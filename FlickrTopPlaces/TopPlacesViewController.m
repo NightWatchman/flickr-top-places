@@ -7,16 +7,16 @@
 
 @interface TopPlacesViewController ()
 
-@property (nonatomic, strong) NSArray *topPlaces;
+@property (nonatomic, strong) NSArray *places;
 
 @end
 
 
 @implementation TopPlacesViewController
 
-@synthesize topPlaces = _topPlaces;
-- (void)setTopPlaces:(NSArray *)topPlaces {
-  _topPlaces = topPlaces;
+@synthesize places = _places;
+- (void)setPlaces:(NSArray *)places {
+  _places = places;
   [self.tableView reloadData];
 }
 
@@ -26,11 +26,11 @@
   self.clearsSelectionOnViewWillAppear = NO;
   self.tableView.dataSource = self;
   self.tableView.delegate = self;
-  dispatch_queue_t downloadQueue = dispatch_queue_create("Image Downloader", nil);
+  dispatch_queue_t downloadQueue = dispatch_queue_create("Place Download", NULL);
   dispatch_async(downloadQueue, ^{
     NSArray *places = [FlickrFetcher topPlaces];
     dispatch_async(dispatch_get_main_queue(), ^{
-      self.topPlaces = places;
+      self.places = places;
     });
   });
 }
@@ -38,9 +38,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if ([segue.identifier isEqualToString:@"View Photo"]) {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-    NSDictionary *place = [self.topPlaces objectAtIndex:indexPath.row];
-    PlacePhotosViewController *dest = segue.destinationViewController;
-    dest.place = place;
+    NSDictionary *place = [self.places objectAtIndex:indexPath.row];
+    NSDictionary *placeName = [FlickrPlaceUtil nameForPlace:place];
+    PhotosTableViewController *dest = segue.destinationViewController;
+    dest.title = [[placeName objectForKey:FLICKR_PLACE_NAME_CITY_KEY]
+                  stringByAppendingString:@" Pictures"];
   }
 }
 
@@ -49,13 +51,13 @@
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-  return [self.topPlaces count];
+  return [self.places count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  NSDictionary *place = [self.topPlaces objectAtIndex:indexPath.row];
+  NSDictionary *place = [self.places objectAtIndex:indexPath.row];
   NSDictionary *placeName = [FlickrPlaceUtil nameForPlace:place];
   UITableViewCell *cell =
   [self.tableView dequeueReusableCellWithIdentifier:@"Geographical Place"];
