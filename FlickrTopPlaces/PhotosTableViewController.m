@@ -20,12 +20,11 @@
 }
 
 @synthesize downloadQueue = _downloadQueue;
-- (dispatch_queue_t) downloadQueue {
+- (dispatch_queue_t)downloadQueue {
   if (!_downloadQueue)
     _downloadQueue = dispatch_queue_create("Thumbnail Download", NULL);
   return _downloadQueue;
 }
-
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -39,6 +38,7 @@
 }
 
 - (void)didReceiveMemoryWarning {
+  [super didReceiveMemoryWarning];
   dispatch_release(self.downloadQueue);
 }
 
@@ -62,9 +62,9 @@
   cell.textLabel.text = [FlickrPhotoUtil displayNameForPhoto:photo];
   cell.detailTextLabel.text = [photo objectForKey:FLICKR_PHOTO_DESCRIPTION];
   dispatch_async(self.downloadQueue, ^{
-    UIImage *img = [self thumbnailForPhoto:photo];
+    UIImage *image = [self thumbnailForPhoto:photo];
     dispatch_async(dispatch_get_main_queue(), ^{
-      cell.imageView.image = img;
+      cell.imageView.image = image;
     });
   });
   return cell;
