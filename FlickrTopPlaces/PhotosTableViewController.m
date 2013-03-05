@@ -60,7 +60,7 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                   reuseIdentifier:@"Photo Summary"];
   cell.textLabel.text = [FlickrPhotoUtil displayNameForPhoto:photo];
-  cell.detailTextLabel.text = [photo objectForKey:FLICKR_PHOTO_DESCRIPTION];
+  cell.detailTextLabel.text = [photo valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
   dispatch_async(self.downloadQueue, ^{
     UIImage *image = [self thumbnailForPhoto:photo];
     dispatch_async(dispatch_get_main_queue(), ^{

@@ -7,7 +7,7 @@
 + (NSString *)displayNameForPhoto:(NSDictionary *)photo {
   NSString *name = [photo objectForKey:FLICKR_PHOTO_TITLE];
   if (!name || name.length == 0)
-    name = [photo objectForKey:FLICKR_PHOTO_DESCRIPTION];
+    name = [photo valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
   if (!name || name.length == 0)
     name = @"Unknown";
   return name;
