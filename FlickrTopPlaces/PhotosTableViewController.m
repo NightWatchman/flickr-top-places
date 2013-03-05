@@ -42,6 +42,15 @@
   dispatch_release(self.downloadQueue);
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  if ([segue.identifier isEqualToString:@"View Image"]) {
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    NSDictionary *photo = [self.photos objectAtIndex:indexPath.row];
+    PhotoViewController *dest = segue.destinationViewController;
+    dest.photo = photo;
+  }
+}
+
 #pragma UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView
@@ -74,15 +83,6 @@
   NSURL *url = [FlickrFetcher urlForPhoto:photo format:FlickrPhotoFormatSquare];
   NSData *bin = [NSData dataWithContentsOfURL:url];
   return [UIImage imageWithData:bin];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  if ([segue.identifier isEqualToString:@"View Image"]) {
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    NSDictionary *photo = [self.photos objectAtIndex:indexPath.row];
-    PhotoViewController *dest = segue.destinationViewController;
-    dest.photo = photo;
-  }
 }
 
 @end

@@ -152,7 +152,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WL6-ae-JG8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2101" y="-186"/>
+            <point key="canvasLocation" x="2143" y="-186"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="15">
@@ -182,11 +182,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Picture Summary" textLabel="f4N-I1-ZWh" detailTextLabel="WYI-jb-hoS" style="IBUITableViewCellStyleSubtitle" id="Nfv-D6-BoQ">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Photo Summary" textLabel="f4N-I1-ZWh" detailTextLabel="WYI-jb-hoS" imageView="qHc-KV-hYc" style="IBUITableViewCellStyleSubtitle" id="Nfv-D6-BoQ">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4N-I1-ZWh">
@@ -199,9 +199,16 @@
                                             <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="first" id="qHc-KV-hYc">
+                                            <rect key="frame" x="10" y="13" width="16" height="16"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <segue destination="Sp2-xj-PSf" kind="push" identifier="View Image" id="aMH-DZ-6Uz"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -218,7 +225,7 @@
         <!--Navigation Controller - Recent Photos-->
         <scene sceneID="A6S-Ev-oYW">
             <objects>
-                <navigationController id="5FI-Ka-br2" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="5FI-Ka-br2" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Recent Photos" image="second.png" id="wna-nv-neJ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wvi-jM-jXt">
@@ -234,34 +241,50 @@
             </objects>
             <point key="canvasLocation" x="653" y="511"/>
         </scene>
+        <!--Photo View Controller - Photo-->
+        <scene sceneID="G3W-bF-MR3">
+            <objects>
+                <viewController id="Sp2-xj-PSf" customClass="PhotoViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ryM-Yi-gTX">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RVP-Uf-WmJ">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dl7-jp-Zuf"/>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Dl7-jp-Zuf" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="2Go-Ts-qYJ"/>
+                                    <constraint firstItem="Dl7-jp-Zuf" firstAttribute="top" secondItem="RVP-Uf-WmJ" secondAttribute="top" constant="20" symbolic="YES" type="default" id="9CN-5B-jfs"/>
+                                    <constraint firstItem="Dl7-jp-Zuf" firstAttribute="leading" secondItem="RVP-Uf-WmJ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="F4M-pz-HHm"/>
+                                    <constraint firstItem="Dl7-jp-Zuf" firstAttribute="centerY" secondItem="RVP-Uf-WmJ" secondAttribute="centerY" type="default" id="Tbn-mP-e0d"/>
+                                    <constraint firstItem="Dl7-jp-Zuf" firstAttribute="centerX" secondItem="RVP-Uf-WmJ" secondAttribute="centerX" type="default" id="aHY-ax-sf8"/>
+                                    <constraint firstAttribute="bottom" secondItem="Dl7-jp-Zuf" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="ubF-hc-Aiy"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RVP-Uf-WmJ" firstAttribute="centerY" secondItem="ryM-Yi-gTX" secondAttribute="centerY" type="default" id="8rR-YJ-J9m"/>
+                            <constraint firstItem="RVP-Uf-WmJ" firstAttribute="leading" secondItem="ryM-Yi-gTX" secondAttribute="leading" constant="-20" id="93H-ST-69D"/>
+                            <constraint firstItem="RVP-Uf-WmJ" firstAttribute="top" secondItem="ryM-Yi-gTX" secondAttribute="top" constant="-20" id="YZP-Ek-Pzd"/>
+                            <constraint firstItem="RVP-Uf-WmJ" firstAttribute="centerX" secondItem="ryM-Yi-gTX" secondAttribute="centerX" type="default" id="ZJ9-Te-0jz"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Photo" id="GPV-Yp-06r"/>
+                    <connections>
+                        <outlet property="imageView" destination="Dl7-jp-Zuf" id="sVk-dR-RKX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Cy-Ux-tRb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1642" y="511"/>
+        </scene>
     </scenes>
     <resources>
         <image name="first" width="16" height="16"/>
         <image name="second.png" width="30" height="30"/>
     </resources>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PhotoViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="PhotosTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotosTableViewController.h"/>
-        </class>
-        <class className="PlacePhotosViewController" superclassName="PhotosTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlacePhotosViewController.h"/>
-        </class>
-        <class className="RecentPhotosViewController" superclassName="PhotosTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecentPhotosViewController.h"/>
-        </class>
-        <class className="TopPlacesViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopPlacesViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
