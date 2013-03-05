@@ -1,6 +1,7 @@
 #import "PhotosTableViewController.h"
 #import "FlickrFetcher.h"
 #import "PhotoViewController.h"
+#import "FlickrPhotoUtil.h"
 
 
 @interface PhotosTableViewController ()
@@ -58,7 +59,7 @@
   if (!cell)
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                   reuseIdentifier:@"Photo Summary"];
-  cell.textLabel.text = [self displayNameForPhoto:photo];
+  cell.textLabel.text = [FlickrPhotoUtil displayNameForPhoto:photo];
   cell.detailTextLabel.text = [photo objectForKey:FLICKR_PHOTO_DESCRIPTION];
   dispatch_async(self.downloadQueue, ^{
     UIImage *img = [self thumbnailForPhoto:photo];
@@ -67,15 +68,6 @@
     });
   });
   return cell;
-}
-
-- (NSString *)displayNameForPhoto:(NSDictionary *)photo {
-  NSString *title = [photo objectForKey:FLICKR_PHOTO_TITLE];
-  if (!title)
-    title = [photo objectForKey:FLICKR_PHOTO_DESCRIPTION];
-  if (!title)
-    title = @"Unknown";
-  return title;
 }
 
 - (UIImage *)thumbnailForPhoto:(NSDictionary *)photo {
