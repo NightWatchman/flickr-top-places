@@ -5,6 +5,8 @@
 
 @interface PhotosTableViewController ()
 
+@property (nonatomic) dispatch_queue_t downloadQueue;
+
 @end
 
 
@@ -16,10 +18,27 @@
   [self.tableView reloadData];
 }
 
+@synthesize downloadQueue = _downloadQueue;
+- (dispatch_queue_t) downloadQueue {
+  if (!_downloadQueue)
+    _downloadQueue = dispatch_queue_create("Thumbnail Download", NULL);
+  return _downloadQueue;
+}
+
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.tableView.dataSource = self;
   self.tableView.delegate = self;
+}
+
+- (void)viewDidUnload {
+  [super viewDidUnload];
+  dispatch_release(self.downloadQueue);
+}
+
+- (void)didReceiveMemoryWarning {
+  dispatch_release(self.downloadQueue);
 }
 
 #pragma UITableViewDataSource
@@ -41,7 +60,12 @@
                                   reuseIdentifier:@"Photo Summary"];
   cell.textLabel.text = [self displayNameForPhoto:photo];
   cell.detailTextLabel.text = [photo objectForKey:FLICKR_PHOTO_DESCRIPTION];
-  cell.imageView.image = [self thumbnailForPhoto:photo];
+  dispatch_async(self.downloadQueue, ^{
+    UIImage *img = [self thumbnailForPhoto:photo];
+    dispatch_async(dispatch_get_main_queue(), ^{
+      cell.imageView.image = img;
+    });
+  });
   return cell;
 }
 
