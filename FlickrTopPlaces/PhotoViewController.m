@@ -24,8 +24,7 @@
   dispatch_async(self.downloadQueue, ^{
     UIImage *img = [self imageForPhoto];
     dispatch_async(dispatch_get_main_queue(), ^{
-      self.imageView.image = img;
-      self.scrollView.contentSize = img.size;
+      [self presentImage:img];
     });
   });
 }
@@ -45,6 +44,12 @@
                                    format:FlickrPhotoFormatLarge];
   NSData *bin = [NSData dataWithContentsOfURL:url];
   return [UIImage imageWithData:bin];
+}
+
+- (void)presentImage:(UIImage *)image
+{
+  self.imageView.image = image;
+  self.scrollView.contentSize = image.size;
 }
 
 #pragma UIViewController
