@@ -6,6 +6,8 @@
 
 @interface PhotoViewController ()
 
+
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic) dispatch_queue_t downloadQueue;
 
@@ -23,6 +25,7 @@
     UIImage *img = [self imageForPhoto];
     dispatch_async(dispatch_get_main_queue(), ^{
       self.imageView.image = img;
+      self.scrollView.contentSize = img.size;
     });
   });
 }
@@ -37,8 +40,19 @@
 
 @synthesize imageView = _imageView;
 
+- (UIImage *)imageForPhoto {
+  NSURL *url = [FlickrFetcher urlForPhoto:self.photo
+                                   format:FlickrPhotoFormatLarge];
+  NSData *bin = [NSData dataWithContentsOfURL:url];
+  return [UIImage imageWithData:bin];
+}
+
+#pragma UIViewController
+
 - (void)viewDidUnload
 {
+  [self setImageView:nil];
+  [self setScrollView:nil];
   [super viewDidUnload];
   dispatch_release(self.downloadQueue);
 }
@@ -47,13 +61,6 @@
 {
   [super didReceiveMemoryWarning];
   dispatch_release(self.downloadQueue);
-}
-
-- (UIImage *)imageForPhoto {
-  NSURL *url = [FlickrFetcher urlForPhoto:self.photo
-                                   format:FlickrPhotoFormatLarge];
-  NSData *bin = [NSData dataWithContentsOfURL:url];
-  return [UIImage imageWithData:bin];
 }
 
 @end
