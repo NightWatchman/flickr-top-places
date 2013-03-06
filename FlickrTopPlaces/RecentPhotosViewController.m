@@ -13,11 +13,6 @@
 
 @implementation RecentPhotosViewController
 
-- (void)viewDidLoad {
-  [super viewDidLoad];
-  self.photos = [RecentPictures recentPictures];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
