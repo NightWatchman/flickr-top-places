@@ -17,7 +17,8 @@
 @implementation PhotoViewController
 
 @synthesize photo = _photo;
-- (void)setPhoto:(NSDictionary *)photo {
+- (void)setPhoto:(NSDictionary *)photo
+{
   _photo = photo;
   self.title = [FlickrPhotoUtil displayNameForPhoto:self.photo];
   [RecentPictures addRecentPicture:photo];
@@ -39,7 +40,8 @@
 
 @synthesize imageView = _imageView;
 
-- (UIImage *)imageForPhoto {
+- (UIImage *)imageForPhoto
+{
   NSURL *url = [FlickrFetcher urlForPhoto:self.photo
                                    format:FlickrPhotoFormatLarge];
   NSData *bin = [NSData dataWithContentsOfURL:url];
@@ -50,8 +52,17 @@
 {
   self.imageView.image = image;
   self.imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
-  self.scrollView.zoomScale = 1;
+  self.scrollView.zoomScale = [self zoomLevelForPhoto:image];
   self.scrollView.contentSize = self.imageView.frame.size;
+}
+
+- (double)zoomLevelForPhoto:(UIImage *)photo
+{
+  CGSize photoSize = photo.size;
+  CGSize scrollViewSize = self.scrollView.bounds.size;
+  double widthZoom = scrollViewSize.width / photoSize.width;
+  double heightZoom = scrollViewSize.height / photoSize.height;
+  return MAX(widthZoom, heightZoom);
 }
 
 #pragma UIViewController
