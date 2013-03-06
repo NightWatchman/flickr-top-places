@@ -49,10 +49,18 @@
 - (void)presentImage:(UIImage *)image
 {
   self.imageView.image = image;
-  self.scrollView.contentSize = image.size;
+  self.imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+  self.scrollView.zoomScale = 1;
+  self.scrollView.contentSize = self.imageView.frame.size;
 }
 
 #pragma UIViewController
+
+- (void)viewDidLoad
+{
+  [super viewDidLoad];
+  self.scrollView.delegate = self;
+}
 
 - (void)viewDidUnload
 {
@@ -66,6 +74,13 @@
 {
   [super didReceiveMemoryWarning];
   dispatch_release(self.downloadQueue);
+}
+
+#pragma UIScrollViewDelegate
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+  return self.imageView;
 }
 
 @end
