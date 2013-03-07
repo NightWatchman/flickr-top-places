@@ -150,10 +150,10 @@
             </objects>
             <point key="canvasLocation" x="2127" y="263"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Flickr Top Places Root View Controller-->
         <scene sceneID="15">
             <objects>
-                <tabBarController id="4" sceneMemberID="viewController">
+                <tabBarController id="4" customClass="FlickrTopPlacesRootViewController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5">
                         <rect key="frame" x="0.0" y="431" width="320" height="49"/>
@@ -167,7 +167,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="114" y="166"/>
+            <point key="canvasLocation" x="176" y="164"/>
         </scene>
         <!--Recent Photos View Controller - Recent Photos-->
         <scene sceneID="gNw-xp-6Dx">
@@ -245,6 +245,9 @@
         <image name="second.png" width="30" height="30"/>
     </resources>
     <classes>
+        <class className="FlickrTopPlacesRootViewController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrTopPlacesRootViewController.h"/>
+        </class>
         <class className="PhotoViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoViewController.h"/>
             <relationships>

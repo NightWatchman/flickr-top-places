@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07396CFB16E80F81006FCD0A /* FlickrTopPlacesRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07396CFA16E80F81006FCD0A /* FlickrTopPlacesRootViewController.m */; };
 		0781F93E16DD6BD0005D16B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0781F93D16DD6BD0005D16B8 /* UIKit.framework */; };
 		0781F94016DD6BD0005D16B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0781F93F16DD6BD0005D16B8 /* Foundation.framework */; };
 		0781F94216DD6BD0005D16B8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0781F94116DD6BD0005D16B8 /* CoreGraphics.framework */; };
@@ -33,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07396CF916E80F81006FCD0A /* FlickrTopPlacesRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrTopPlacesRootViewController.h; sourceTree = "<group>"; };
+		07396CFA16E80F81006FCD0A /* FlickrTopPlacesRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrTopPlacesRootViewController.m; sourceTree = "<group>"; };
 		0781F93A16DD6BD0005D16B8 /* FlickrTopPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrTopPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0781F93D16DD6BD0005D16B8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0781F93F16DD6BD0005D16B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -137,6 +140,8 @@
 				07E6830916E179490087722F /* FlickrPlaceUtil.m */,
 				07D7248216E5C938006E4B7B /* FlickrPhotoUtil.h */,
 				07D7248316E5C938006E4B7B /* FlickrPhotoUtil.m */,
+				07396CF916E80F81006FCD0A /* FlickrTopPlacesRootViewController.h */,
+				07396CFA16E80F81006FCD0A /* FlickrTopPlacesRootViewController.m */,
 			);
 			path = FlickrTopPlaces;
 			sourceTree = "<group>";
@@ -242,6 +247,7 @@
 				0781F97D16DEDCC6005D16B8 /* PhotoViewController.m in Sources */,
 				07E6830A16E179490087722F /* FlickrPlaceUtil.m in Sources */,
 				07D7248416E5C938006E4B7B /* FlickrPhotoUtil.m in Sources */,
+				07396CFB16E80F81006FCD0A /* FlickrTopPlacesRootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
