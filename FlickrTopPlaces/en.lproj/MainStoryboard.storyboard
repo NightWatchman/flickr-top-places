@@ -125,7 +125,7 @@
                 <viewController id="6FM-DB-JG4" customClass="PhotoViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YVY-RH-tbt">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" minimumZoomScale="0.0" maximumZoomScale="2" id="rk6-m1-JF9">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
@@ -136,7 +136,12 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                             </scrollView>
+                            <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="1UD-JE-4TF">
+                                <rect key="frame" x="141" y="209" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -144,11 +149,12 @@
                     <connections>
                         <outlet property="imageView" destination="VDs-2l-ofb" id="Lpa-ze-4Ir"/>
                         <outlet property="scrollView" destination="rk6-m1-JF9" id="j99-hn-dq3"/>
+                        <outlet property="spinner" destination="1UD-JE-4TF" id="l7i-yP-D5n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WL6-ae-JG8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2127" y="263"/>
+            <point key="canvasLocation" x="2118" y="252"/>
         </scene>
         <!--Flickr Top Places Root View Controller-->
         <scene sceneID="15">
@@ -253,6 +259,7 @@
             <relationships>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
             </relationships>
         </class>
         <class className="PhotosTableViewController" superclassName="UITableViewController">

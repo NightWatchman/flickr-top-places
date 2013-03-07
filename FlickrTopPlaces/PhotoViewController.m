@@ -9,6 +9,7 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic) dispatch_queue_t downloadQueue;
 
 @end
@@ -22,10 +23,12 @@
   _photo = photo;
   self.title = [FlickrPhotoUtil displayNameForPhoto:self.photo];
   [RecentPictures addRecentPicture:photo];
+  [self.spinner startAnimating];
   dispatch_async(self.downloadQueue, ^{
     UIImage *img = [self imageForPhoto];
     dispatch_async(dispatch_get_main_queue(), ^{
       [self presentImage:img];
+      [self.spinner stopAnimating];
     });
   });
 }
@@ -77,6 +80,7 @@
 {
   [self setImageView:nil];
   [self setScrollView:nil];
+  [self setSpinner:nil];
   [super viewDidUnload];
   dispatch_release(self.downloadQueue);
 }
