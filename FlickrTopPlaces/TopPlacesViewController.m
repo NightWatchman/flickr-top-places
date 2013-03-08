@@ -8,6 +8,7 @@
 @interface TopPlacesViewController ()
 
 @property (nonatomic, strong) NSArray *places;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -20,16 +21,30 @@
   [self.tableView reloadData];
 }
 
+@synthesize activityIndicator = activityIndicator_;
+- (UIActivityIndicatorView *)activityIndicator {
+  if (!activityIndicator_)
+    activityIndicator_ = [[UIActivityIndicatorView alloc]
+                          initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+  activityIndicator_.hidesWhenStopped = YES;
+  activityIndicator_.hidden = YES;
+  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                            initWithCustomView:activityIndicator_];
+  return activityIndicator_;
+}
+
 - (void)viewDidLoad
 {
   [super viewDidLoad];
   self.clearsSelectionOnViewWillAppear = NO;
   self.tableView.dataSource = self;
   self.tableView.delegate = self;
-  dispatch_queue_t downloadQueue = dispatch_queue_create("Places Download", NULL);
+  [self.activityIndicator startAnimating];
+  dispatch_queue_t downloadQueue = dispatch_queue_create("Places Download", nil);
   dispatch_async(downloadQueue, ^{
     NSArray *places = [FlickrFetcher topPlaces];
     dispatch_async(dispatch_get_main_queue(), ^{
+      [self.activityIndicator stopAnimating];
       self.places = places;
     });
   });
@@ -45,7 +60,7 @@
   }
 }
 
-#pragma UITableViewDataSource
+#pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
