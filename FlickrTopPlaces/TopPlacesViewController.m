@@ -23,13 +23,14 @@
 
 @synthesize activityIndicator = activityIndicator_;
 - (UIActivityIndicatorView *)activityIndicator {
-  if (!activityIndicator_)
+  if (!activityIndicator_) {
     activityIndicator_ = [[UIActivityIndicatorView alloc]
                           initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-  activityIndicator_.hidesWhenStopped = YES;
-  activityIndicator_.hidden = YES;
-  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+    activityIndicator_.hidesWhenStopped = YES;
+    activityIndicator_.hidden = YES;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
                                             initWithCustomView:activityIndicator_];
+  }
   return activityIndicator_;
 }
 

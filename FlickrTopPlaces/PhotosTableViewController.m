@@ -4,6 +4,10 @@
 #import "FlickrPhotoUtil.h"
 
 
+// Apple API has no deterministic way to find this value
+#define UITableViewCellImageSize 40
+
+
 @interface PhotosTableViewController ()
 
 @property (nonatomic) dispatch_queue_t downloadQueue;
@@ -14,35 +18,43 @@
 @implementation PhotosTableViewController
 
 @synthesize photos = _photos;
-- (void)setPhotos:(NSArray *)photos {
+- (void)setPhotos:(NSArray *)photos
+{
   _photos = photos;
   [self.tableView reloadData];
 }
 
 @synthesize downloadQueue = _downloadQueue;
-- (dispatch_queue_t)downloadQueue {
+- (dispatch_queue_t)downloadQueue
+{
   if (!_downloadQueue)
     _downloadQueue = dispatch_queue_create("Thumbnail Download", NULL);
   return _downloadQueue;
 }
 
-- (void)viewDidLoad {
+#pragma mark - UIViewController
+
+- (void)viewDidLoad
+{
   [super viewDidLoad];
   self.tableView.dataSource = self;
   self.tableView.delegate = self;
 }
 
-- (void)viewDidUnload {
+- (void)viewDidUnload
+{
   [super viewDidUnload];
   dispatch_release(self.downloadQueue);
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
   [super didReceiveMemoryWarning];
   dispatch_release(self.downloadQueue);
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
   if ([segue.identifier isEqualToString:@"View Image"]) {
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     NSDictionary *photo = [self.photos objectAtIndex:indexPath.row];
@@ -51,7 +63,7 @@
   }
 }
 
-#pragma UITableViewDataSource
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
@@ -70,13 +82,27 @@
                                   reuseIdentifier:@"Photo Summary"];
   cell.textLabel.text = [FlickrPhotoUtil displayNameForPhoto:photo];
   cell.detailTextLabel.text = [photo valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
+  [self setThumnailForCell:cell withPhoto:photo];
+  return cell;
+}
+
+- (void)setThumnailForCell:(UITableViewCell *)cell
+                 withPhoto:(NSDictionary *)photo
+{
+  UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]
+                                      initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+  [spinner startAnimating];
+  spinner.center = CGPointMake(UITableViewCellImageSize / 2,
+                               UITableViewCellImageSize / 2);
+  [cell.imageView addSubview:spinner];
   dispatch_async(self.downloadQueue, ^{
     UIImage *image = [self thumbnailForPhoto:photo];
     dispatch_async(dispatch_get_main_queue(), ^{
       cell.imageView.image = image;
+      [spinner stopAnimating];
+      [spinner removeFromSuperview];
     });
   });
-  return cell;
 }
 
 - (UIImage *)thumbnailForPhoto:(NSDictionary *)photo {
